@@ -3,27 +3,24 @@
 #include<vector>
 #include <cmath>
 using namespace std;
-string chaos(std::string source,float key){
-    string new_str = "";
-    vector<int> xt_arr = {};
-    xt_arr.push_back(key);
-    int xt = round(1-2*abs(key));
-    xt_arr.push_back(xt);
-    for(int i = 0;i < source.size();i++){
-        new_str += static_cast<char>((int) source[i] + xt_arr[i+1]);
-        xt_arr.push_back(round(1-2*abs(xt_arr[i+1])));
+std::string chaos(const std::string& source, float key) {
+    std::string new_str;
+    new_str.reserve(source.size());
+    int xt = round(1 - 2 * std::abs(key));
+    for (char c : source) {
+        new_str += static_cast<char>(c + xt);
+        xt = round(1 - 2 * std::abs(xt));
     }
+
     return new_str;
 }
-string de_chaos(std::string source,float key){
-    string new_str = "";
-    vector<int> xt_arr = {};
-    xt_arr.push_back(key);
-    int xt = round(1-2*abs(key));
-    xt_arr.push_back(xt);
-    for(int i = 0;i < source.size();i++){
-        new_str += static_cast<char>((int) source[i] - xt_arr[i+1]);
-        xt_arr.push_back(round(1-2*abs(xt_arr[i+1])));
+std::string de_chaos(const std::string& source, float key) {
+    std::string new_str;
+    new_str.reserve(source.size());
+    int xt = round(1 - 2 * std::abs(key));
+    for (char c : source) {
+        new_str += static_cast<char>(c - xt);
+        xt = round(1 - 2 * std::abs(xt));
     }
     return new_str;
 }
